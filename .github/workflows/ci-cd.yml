@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: dotnet restore src/AgriSmart.API/AgriSmart.API.csproj
+      - name: Build
+        run: dotnet build src/AgriSmart.API/AgriSmart.API.csproj --no-restore -c Release
+
+  build-and-test-ai-service:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r ai-service/requirements.txt
+      - name: Train models
+        run: cd ai-service && python train_models.py
+      - name: Smoke-test the service
+        run: |
+          cd ai-service
+          uvicorn app:app --port 8000 &
+          sleep 3
+          curl -f http://localhost:8000/health
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install & build
+        run: |
+          cd src/AgriSmart.Client
+          npm install
+          npm run build
