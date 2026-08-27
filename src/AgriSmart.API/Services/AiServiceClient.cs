@@ -1,5 +1,8 @@
 using System.Text.Json;
+<<<<<<< HEAD
 using System.Text.Json.Serialization;
+=======
+>>>>>>> e740759011a0a4ae6e49369223dc4e66eb29e00c
 
 namespace AgriSmart.API.Services;
 
@@ -49,6 +52,7 @@ public class AiServiceClient : IAiServiceClient
         return new DiseaseDetectionResult(body.PredictedDisease, body.Confidence, body.TreatmentAdvice, body.ModelVersion);
     }
 
+<<<<<<< HEAD
     // The Python AI service returns snake_case JSON (FastAPI/Pydantic default),
     // but JsonSerializerDefaults.Web expects camelCase — these attributes make
     // deserialization match the real field names instead of silently binding
@@ -63,4 +67,8 @@ public class AiServiceClient : IAiServiceClient
         [property: JsonPropertyName("confidence")] double Confidence,
         [property: JsonPropertyName("treatment_advice")] string TreatmentAdvice,
         [property: JsonPropertyName("model_version")] string ModelVersion);
+=======
+    private record YieldServiceResponse(double PredictedYieldKgPerAcre, string LimitingFactor, string ModelVersion);
+    private record DiseaseServiceResponse(string PredictedDisease, double Confidence, string TreatmentAdvice, string ModelVersion);
+>>>>>>> e740759011a0a4ae6e49369223dc4e66eb29e00c
 }

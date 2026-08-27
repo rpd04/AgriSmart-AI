@@ -91,6 +91,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+<<<<<<< HEAD
 // ---- Turn AI-service failures into a real JSON message instead of a bare 500 ----
 // (HttpRequestException = AI service unreachable/refused connection;
 //  the AiServiceClient also throws this via EnsureSuccessStatusCode() on a non-2xx reply.)
@@ -111,6 +112,8 @@ app.Use(async (context, next) =>
     }
 });
 
+=======
+>>>>>>> e740759011a0a4ae6e49369223dc4e66eb29e00c
 app.UseHttpsRedirection();
 app.UseCors("Client");
 app.UseAuthentication();

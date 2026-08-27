@@ -21,6 +21,7 @@ public class AppDbContext : DbContext
             .HasIndex(u => u.Email)
             .IsUnique();
 
+<<<<<<< HEAD
         // These three entities use key property names that don't match EF Core's
         // default convention (Id / <TypeName>Id), so the primary key must be
         // declared explicitly or EF throws "requires a primary key to be defined"
@@ -29,6 +30,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<YieldPrediction>().HasKey(y => y.PredictionId);
         modelBuilder.Entity<MarketplaceListing>().HasKey(l => l.ListingId);
 
+=======
+>>>>>>> e740759011a0a4ae6e49369223dc4e66eb29e00c
         modelBuilder.Entity<Farm>()
             .HasOne(f => f.User)
             .WithMany(u => u.Farms)
