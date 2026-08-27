@@ -1,0 +1,23 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+src/AgriSmart.API/agrismart.db
+
+# Node
+node_modules/
+dist/
+.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+venv/
+ai-service/models/*.joblib
+
+# OS
+.DS_Store
+Thumbs.db

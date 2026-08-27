@@ -1,0 +1,61 @@
+:root {
+  --green: #2e7d32;
+  --green-dark: #1b5e20;
+  --navy: #1f3b57;
+  --bg: #f4f7f4;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: #222; }
+
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--navy); color: white; padding: 14px 24px;
+}
+.navbar .brand { font-weight: 700; font-size: 1.2rem; }
+.navbar .links { display: flex; gap: 16px; align-items: center; }
+.navbar a { color: white; text-decoration: none; }
+.navbar a:hover { text-decoration: underline; }
+.navbar button {
+  background: var(--green); border: none; color: white; padding: 6px 14px;
+  border-radius: 4px; cursor: pointer;
+}
+.user-pill { background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 12px; }
+
+.container { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+
+.card {
+  background: white; border-radius: 10px; padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 20px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.auth-card { max-width: 420px; margin: 40px auto; }
+
+form { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; }
+form label { font-size: 0.85rem; color: #555; margin-top: 8px; }
+form input, form select {
+  padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem;
+}
+form button {
+  margin-top: 16px; background: var(--green); color: white; border: none;
+  padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;
+}
+form button:hover { background: var(--green-dark); }
+form button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.form-grid button { grid-column: 1 / -1; }
+
+.list { list-style: none; padding: 0; }
+.list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+
+.error { color: #c62828; font-size: 0.9rem; }
+.muted { color: #888; font-size: 0.9rem; }
+
+.result-box {
+  margin-top: 18px; padding: 16px; background: #e8f5e9;
+  border-left: 4px solid var(--green); border-radius: 6px;
+}
+.preview { max-width: 200px; border-radius: 8px; margin-top: 8px; }

@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: ./src
+      dockerfile: AgriSmart.API/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - ai-service
+    environment:
+      - ConnectionStrings__Default=Data Source=/data/agrismart.db
+      - AiService__BaseUrl=http://ai-service:8000
+    volumes:
+      - api-data:/data
+
+  ai-service:
+    build: ./ai-service
+    ports:
+      - "8000:8000"
+
+  client:
+    build: ./src/AgriSmart.Client
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  api-data:
